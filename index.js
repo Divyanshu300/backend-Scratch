@@ -26,6 +26,19 @@ const app = express(); //ISS LINE KI MADAD SE HMLOGO NE USKO UNPACK KRR DIY HAI 
 
 app.set("view engine" , "ejs");//TO RENDER HTML THROUGH BACKEND WE USE ejs {Create a new folder views to save ejs files}
 
+//KUCH BHI REQ AATI HAI HMAARE SERVER PRR TOH WOH KISI SPECIFIC ROUTE PR JAANE SE PEHLE ISS FUNCTION SE JAAYE
+    //BUILTIN MIDDLEWARE
+    //CUSTOM MIDDLEWARE 
+    //THIRD PARTY MIDDLEWARE
+app.use((req , res , next) => {
+    console.log("This is middleware")
+    const a = 3;
+    const b = 5;
+    console.log(a + b);
+
+    return next();//AGAR YE NHI LIKHA TOH NORMAL FLOW OF REQ NHI CHALEGA {URL WAALA FUCTION NHI CHAL PAYEGA} INSTEAD PAGE KO RES MILAA NHI TOH WOH USI KA WAITKRTA REH JAYEGA
+})
+
 app.get("/" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
     // res.send("The home page"); //res.send === res.end
     res.render("index"); //JO FILE JIS ROUTE PRR SHOW KRNI HAI USKO WHAA RENDER KRRDO
