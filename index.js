@@ -24,8 +24,11 @@ const app = express(); //ISS LINE KI MADAD SE HMLOGO NE USKO UNPACK KRR DIY HAI 
 
 //EXPRESS BHI HTTP KA HI USE KRTA HAI
 
+app.set("view engine" , "ejs");//TO RENDER HTML THROUGH BACKEND WE USE ejs {Create a new folder views to save ejs files}
+
 app.get("/" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
-    res.send("The home page"); //res.send === res.end
+    // res.send("The home page"); //res.send === res.end
+    res.render("index"); //JO FILE JIS ROUTE PRR SHOW KRNI HAI USKO WHAA RENDER KRRDO
 })
 
 app.get("/about" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
