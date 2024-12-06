@@ -4,8 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="index.css" class="css">
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <form 
+        action="/get-form-data"
+        method="post"
+    >
+        <input
+            type="text"
+            name = "username"
+            placeholder="Enter username"
+        />
+        <input
+            type="text"
+            name="email"
+            placeholder="Enter email"
+        />
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+        />  
+
+        <button>Submit form</button>
+    </form>
+
+    <script src="/assets/index.js"></script>
 </body>
 </html>

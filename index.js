@@ -43,19 +43,30 @@ app.use((req , res , next) => {
 //THIRD PARTY MIDDLE WARE
 app.use(morgan('dev'))//YE HME BTAATA HAI KI KON SI REQ AAYI THI , USKA RESPONSE CODE KYAA THA , AND KITNE TIME MEIN USKO RESPONSE MILAA THA
 
+//YE DONO MIDDLEWARE USE KRKE HMM req.body MEIN JO DATA AAYA HAI USKO READ KRR SKENGE 
+app.use(express.json());
+app.use(express.urlencoded({extended : true})); 
+
+//TO LINK CSS OR ANY OTHER FILE THROUGH BACKEND
+app.use(express.static("public"));//USS FOLDER KA NAAM DEDO JISKO HRR JAGAH SE DIRECTLY ACCESS KRR SKE
+
 //SPECIFIC CUSTOM MIDDLEWARFE
-app.get("/" , 
-    (req , res , next) => {
-        const a = 3;
-        const b = 5;
-        console.log(a + b);
-        next();    
-    } , 
-    (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
-        // res.send("The home page"); //res.send === res.end
-        res.render("index"); //JO FILE JIS ROUTE PRR SHOW KRNI HAI USKO WHAA RENDER KRRDO
-    }
-)
+// app.get("/" , 
+//     (req , res , next) => {
+//         const a = 3;
+//         const b = 5;
+//         console.log(a + b);
+//         next();    
+//     } , 
+//     (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
+//         // res.send("The home page"); //res.send === res.end
+//         res.render("index"); //JO FILE JIS ROUTE PRR SHOW KRNI HAI USKO WHAA RENDER KRRDO
+//     }
+// )
+
+app.get("/" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
+    res.render("index"); //JO FILE JIS ROUTE PRR SHOW KRNI HAI USKO WHAA RENDER KRRDO
+})
 
 app.get("/about" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
     res.send("The about page"); //res.send === res.end
@@ -63,6 +74,13 @@ app.get("/about" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
 
 app.get("/profile" , (req , res)=> { //IF ELSE LAGANE KE JAGAH WE CAN USE THESE
     res.send("The profile page"); //res.send === res.end
+})
+
+app.post("/get-form-data" , (req , res)=> {
+    //HAMESHA INPUT TAG MEIN name ATTRIBUTE KA USE KRNA WRA DATA FRONTEND SE BACKEND AYEGA JAROOR BUT WOH DISPLAY NHI HOGA BECOZ OF NO NAME
+    // console.log(req.query);//PRODUCTION MEIN DATA req.query MEIN NHI AYEGA {GET request ke liye we use req.query}
+    console.log(req.body);
+    res.send("Form data received"); 
 })
 
 
