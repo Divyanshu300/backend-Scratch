@@ -23,6 +23,9 @@ const express = require("express"); //EXPRESS EK PACKED TOOL BOX HAI
 const morgan = require("morgan");
 const app = express(); //ISS LINE KI MADAD SE HMLOGO NE USKO UNPACK KRR DIY HAI AND SAARE CHEEZE JO USKE ANDAR HAI ISKE THROUGH USE KRR LETE HAI
 //EXPRESS BHI HTTP KA HI USE KRTA HAI
+const userModel = require("./models/user");
+const dbConnection = require("./config/db")
+
 
 app.set("view engine" , "ejs");//TO RENDER HTML THROUGH BACKEND WE USE ejs {Create a new folder views to save ejs files}
 
@@ -82,6 +85,20 @@ app.post("/get-form-data" , (req , res)=> {
     console.log(req.body);
     res.send("Form data received"); 
 })
+
+app.post("/register" , async(req , res) => {
+    const {username , email , password} = req.body;
+    
+    const newUser = await userModel.create({
+        username : username,
+        email : email,
+        password : password
+    })
+
+    res.send(newUser);
+})
+
+
 
 
 app.listen(3000);
