@@ -98,8 +98,38 @@ app.post("/register" , async(req , res) => {
     res.send(newUser);
 })
 
+//READ
+app.get("/get-user" , (req , res) => {
+    userModel.find().then((user) => { //SAARE USERS KA ARRAY RETURN KREGA AND IF EMPTY THEN EMPTY ARRAY RETURN KREGA
+        res.send(user);
+    })
+    
+    userModel.findOne({// SABSE PEHLA JO CONDITION KO SATISFY KREGA WOH USER RETURN KREGA WRNA NULL RETURN KREGA
+        username : "b"
+    }).then((user) => {
+        res.send(user);
+    })
+})
 
+//UPDATE
+app.get("/update-user" , async(req , res) => {
+    await userModel.findOneAndUpdate({
+        username : "a"
+    },{
+        email : "C@C.com"
+    })
 
+    res.send("user updated")
+})
+
+//DELETE
+app.get("/delete-user" , async(req , res) => {
+    await userModel.findOneAndDelete({
+        username : "a"
+    })
+
+    res.send("user deleted")
+})
 
 app.listen(3000);
 
